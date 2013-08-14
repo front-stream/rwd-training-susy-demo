@@ -1,0 +1,54 @@
+@import 'susy';
+@import 'layout';
+
+$total-columns: 12; // 12 columns
+$column-width: 4em; // columns are 4em wide
+$gutter-width: 1em; // with 1em gutters
+$grid-padding: 1em; // and 1em padding on the grid container
+//$container-style: fluid;
+//$container-width: 50%;
+
+$media-layout-medium: 40em 12;
+$media-layout-large: 60em 12;
+
+li{
+	margin-bottom: $gutter-width;
+}
+
+.container {
+	@include susy-grid-background;
+	@include container;
+	@include at-breakpoint($media-layout-medium) {
+    	li{
+    		@include span-columns(6); // each gallery-image is 3 of 9 cols.
+  			@include nth-omega(2n); // same as omega example above.
+    	}
+  	}
+	@include at-breakpoint($media-layout-large) {
+    	li{
+    		@include span-columns(3); // each gallery-image is 3 of 9 cols.
+    		@include remove-nth-omega(2n);
+  			@include nth-omega(3n); // same as omega example above.
+  			&:first-child{
+  				//@include push(3);
+  				//@include prefix(3);
+  			}
+    	}
+    	.item-big{
+    		//@include remove-nth-omega(2n);
+    		//@include remove-nth-omega(3n);
+    		@include span-columns(6);
+    		//@include nth-omega(2n); 
+    	}
+    	.push{
+    		@include bleed(2);
+    		///@include pull(3);
+    	}
+    	/*.pop{
+    		@include push(3);
+    	}*/
+  	}  	
+}
+
+
+
